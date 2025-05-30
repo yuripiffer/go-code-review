@@ -63,8 +63,8 @@ func (a *API) withServer() *API {
 func (a *API) withRoutes() *API {
 	apiGroup := a.mux.Group("/api")
 
-	apiGroup.POST("/apply", a.ApplyCoupon)
-	apiGroup.POST("/create", a.CreateCoupon)
+	apiGroup.POST("/coupon/validation", a.ApplyCoupon)
+	apiGroup.POST("/coupon", a.CreateCoupon)
 	apiGroup.GET("/coupons", a.GetCoupons)
 
 	return a

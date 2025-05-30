@@ -6,7 +6,6 @@ import (
 
 //go:generate go run github.com/matryer/moq -out service_mock.go -stub . CouponService
 type CouponService interface {
-	// Think if should return a pointer
 	ApplyCoupon(code string, value int) (entity.Basket, error)
 	CreateCoupon(code string, discount, minBasketValue int) error
 	GetCoupons([]string) ([]entity.Coupon, error)

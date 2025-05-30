@@ -61,7 +61,34 @@ info:
   title: My API
   version: "1.0"
 paths:
-  /apply:
+  /coupon:
+    post:
+      consumes:
+      - application/json
+      description: Creates a new coupon with the specified code, discount, and minimum
+        basket value
+      parameters:
+      - description: Coupon details
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/internal_api.CreateCouponRequest'
+      responses:
+        "201":
+          description: Created
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/pkg.Error'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/pkg.Error'
+      summary: Create a new coupon
+      tags:
+      - coupons
+  /coupon/validation:
     post:
       consumes:
       - application/json
@@ -123,33 +150,6 @@ paths:
           schema:
             $ref: '#/definitions/pkg.Error'
       summary: Get coupons by codes
-      tags:
-      - coupons
-  /create:
-    post:
-      consumes:
-      - application/json
-      description: Creates a new coupon with the specified code, discount, and minimum
-        basket value
-      parameters:
-      - description: Coupon details
-        in: body
-        name: request
-        required: true
-        schema:
-          $ref: '#/definitions/internal_api.CreateCouponRequest'
-      responses:
-        "201":
-          description: Created
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/pkg.Error'
-        "409":
-          description: Conflict
-          schema:
-            $ref: '#/definitions/pkg.Error'
-      summary: Create a new coupon
       tags:
       - coupons
 schemes:

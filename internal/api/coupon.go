@@ -29,7 +29,7 @@ type ApplyCouponResponse struct {
 // @Success      200 {object} ApplyCouponResponse
 // @Failure      400 {object} pkg.Error
 // @Failure      404 {object} pkg.Error
-// @Router       /apply [post]
+// @Router       /coupon/validation [post]
 func (a *API) ApplyCoupon(c *gin.Context) {
 	input := ApplyCouponRequest{}
 	if err := c.ShouldBindJSON(&input); err != nil {
@@ -74,7 +74,7 @@ type CreateCouponRequest struct {
 // @Success      201
 // @Failure      400 {object} pkg.Error
 // @Failure      409 {object} pkg.Error
-// @Router       /create [post]
+// @Router       /coupon [post]
 func (a *API) CreateCoupon(c *gin.Context) {
 	input := CreateCouponRequest{}
 	if err := c.ShouldBindJSON(&input); err != nil {

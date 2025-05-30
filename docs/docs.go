@@ -15,7 +15,47 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/apply": {
+        "/coupon": {
+            "post": {
+                "description": "Creates a new coupon with the specified code, discount, and minimum basket value",
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "coupons"
+                ],
+                "summary": "Create a new coupon",
+                "parameters": [
+                    {
+                        "description": "Coupon details",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/internal_api.CreateCouponRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Error"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/coupon/validation": {
             "post": {
                 "description": "Applies a coupon code to a given basket value and returns the result or error",
                 "consumes": [
@@ -103,46 +143,6 @@ const docTemplate = `{
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/pkg.Error"
-                        }
-                    }
-                }
-            }
-        },
-        "/create": {
-            "post": {
-                "description": "Creates a new coupon with the specified code, discount, and minimum basket value",
-                "consumes": [
-                    "application/json"
-                ],
-                "tags": [
-                    "coupons"
-                ],
-                "summary": "Create a new coupon",
-                "parameters": [
-                    {
-                        "description": "Coupon details",
-                        "name": "request",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/internal_api.CreateCouponRequest"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Created"
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/pkg.Error"
-                        }
-                    },
-                    "409": {
-                        "description": "Conflict",
                         "schema": {
                             "$ref": "#/definitions/pkg.Error"
                         }
