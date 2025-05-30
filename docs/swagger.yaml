@@ -1,0 +1,157 @@
+basePath: /api/
+definitions:
+  internal_api.ApplyCouponRequest:
+    properties:
+      code:
+        type: string
+      value:
+        type: integer
+    type: object
+  internal_api.ApplyCouponResponse:
+    properties:
+      application_successful:
+        type: boolean
+      applied_discount:
+        type: integer
+      value:
+        type: integer
+    type: object
+  internal_api.CouponResponse:
+    properties:
+      code:
+        type: string
+      discount:
+        type: integer
+      id:
+        type: string
+      minimum_basket_value:
+        type: integer
+    type: object
+  internal_api.CreateCouponRequest:
+    properties:
+      code:
+        type: string
+      discount:
+        type: integer
+      minimum_basket_value:
+        type: integer
+    type: object
+  internal_api.GetCouponsRequest:
+    properties:
+      codes:
+        items:
+          type: string
+        type: array
+    type: object
+  pkg.Error:
+    properties:
+      code:
+        description: Machine-readable error code.
+        type: string
+      error:
+        description: Optional wrapped error.
+      message:
+        description: Human-readable error message.
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: This is an API for managing coupons.
+  title: My API
+  version: "1.0"
+paths:
+  /apply:
+    post:
+      consumes:
+      - application/json
+      description: Applies a coupon code to a given basket value and returns the result
+        or error
+      parameters:
+      - description: Coupon code and basket value
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/internal_api.ApplyCouponRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/internal_api.ApplyCouponResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/pkg.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/pkg.Error'
+      summary: Apply a coupon to a basket
+      tags:
+      - coupons
+  /coupons:
+    get:
+      consumes:
+      - application/json
+      description: Retrieves coupon details for the provided list of coupons if they
+        are all existent
+      parameters:
+      - description: List of coupon codes
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/internal_api.GetCouponsRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/internal_api.CouponResponse'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/pkg.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/pkg.Error'
+      summary: Get coupons by codes
+      tags:
+      - coupons
+  /create:
+    post:
+      consumes:
+      - application/json
+      description: Creates a new coupon with the specified code, discount, and minimum
+        basket value
+      parameters:
+      - description: Coupon details
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/internal_api.CreateCouponRequest'
+      responses:
+        "201":
+          description: Created
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/pkg.Error'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/pkg.Error'
+      summary: Create a new coupon
+      tags:
+      - coupons
+schemes:
+- http
+swagger: "2.0"

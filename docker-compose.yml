@@ -1,0 +1,12 @@
+services:
+  coupon_service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: go-code-review
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./:/go/src/app  # Mount to a different directory for source code
+    working_dir: /app   # Keep the working directory as /app where the binary is
+    restart: unless-stopped
