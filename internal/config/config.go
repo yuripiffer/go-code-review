@@ -24,8 +24,7 @@ type Env struct {
 	LogLevel    string `env:"API_LOG_LEVEL" envDefault:"info"`
 	Port        int    `env:"API_PORT"`
 	AuthConfig  struct {
-		JWTSecret      string   `env:"JWT_SECRET,required"`
-		AllowedIssuers []string `env:"ALLOWED_ISSUERS" envSeparator:","` //TODO TODO TODO
+		JWTSecret string `env:"JWT_SECRET,required"`
 	}
 }
 
