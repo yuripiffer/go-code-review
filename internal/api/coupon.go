@@ -24,10 +24,13 @@ type ApplyCouponResponse struct {
 // @Description  Applies a coupon code to a given basket value and returns the result or error
 // @Tags         coupons
 // @Accept       json
+// @Security     BearerAuth
 // @Produce      json
 // @Param        request body ApplyCouponRequest true "Coupon code and basket value"
 // @Success      200 {object} ApplyCouponResponse
 // @Failure      400 {object} pkg.Error
+// @Success      401
+// @Failure      403
 // @Failure      404 {object} pkg.Error
 // @Router       /coupon/validation [post]
 func (a *API) ApplyCoupon(c *gin.Context) {
@@ -70,9 +73,12 @@ type CreateCouponRequest struct {
 // @Description  Creates a new coupon with the specified code, discount, and minimum basket value
 // @Tags         coupons
 // @Accept       json
+// @Security     BearerAuth
 // @Param        request body CreateCouponRequest true "Coupon details"
 // @Success      201
 // @Failure      400 {object} pkg.Error
+// @Success      401
+// @Failure      403
 // @Failure      409 {object} pkg.Error
 // @Router       /coupon [post]
 func (a *API) CreateCoupon(c *gin.Context) {
@@ -126,10 +132,13 @@ type CouponResponse struct {
 // @Description  Retrieves coupon details for the provided list of coupons if they are all existent
 // @Tags         coupons
 // @Accept       json
+// @Security     BearerAuth
 // @Produce      json
 // @Param        request body GetCouponsRequest true "List of coupon codes"
 // @Success      200 {array} CouponResponse
 // @Failure      400 {object} pkg.Error
+// @Success      401
+// @Failure      403
 // @Failure      404 {object} pkg.Error
 // @Router       /coupons [get]
 func (a *API) GetCoupons(c *gin.Context) {

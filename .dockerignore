@@ -1,0 +1,45 @@
+# Git
+.git
+.gitignore
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+
+# OS
+.DS_Store
+
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+main
+bin/
+
+# Tests
+*.test
+*.out
+coverage.txt
+
+# Temp files
+tmp/
+temp/
+
+# Docker
+docker-data/
+.docker
+
+# Project specific
+vendor/
+*.log
+*.env*
+!.env.example
+
+# Generated files
+docs/swagger.*
+*_mock.go
+*.gen.go

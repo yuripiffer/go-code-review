@@ -1,0 +1,51 @@
+# Binaries and executables
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+main
+
+# Test binary, built with go test -c
+*.test
+
+# Output of the go coverage tool
+*.out
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Dependency directories
+vendor/
+
+# Go workspace file
+go.work
+
+# Generated files
+*.gen.go
+*_mock.go
+
+# Binary output directory
+bin/
+
+# Swagger generated docs
+docs/swagger.*
+
+# Log files
+*.log
+
+# Temporary files
+tmp/
+temp/
+
+# Docker volumes
+docker-data/

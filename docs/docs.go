@@ -17,6 +17,11 @@ const docTemplate = `{
     "paths": {
         "/coupon": {
             "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "description": "Creates a new coupon with the specified code, discount, and minimum basket value",
                 "consumes": [
                     "application/json"
@@ -46,6 +51,12 @@ const docTemplate = `{
                             "$ref": "#/definitions/pkg.Error"
                         }
                     },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
                     "409": {
                         "description": "Conflict",
                         "schema": {
@@ -57,6 +68,11 @@ const docTemplate = `{
         },
         "/coupon/validation": {
             "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "description": "Applies a coupon code to a given basket value and returns the result or error",
                 "consumes": [
                     "application/json"
@@ -92,6 +108,12 @@ const docTemplate = `{
                             "$ref": "#/definitions/pkg.Error"
                         }
                     },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
                     "404": {
                         "description": "Not Found",
                         "schema": {
@@ -103,6 +125,11 @@ const docTemplate = `{
         },
         "/coupons": {
             "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "description": "Retrieves coupon details for the provided list of coupons if they are all existent",
                 "consumes": [
                     "application/json"
@@ -140,6 +167,12 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/pkg.Error"
                         }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
                     },
                     "404": {
                         "description": "Not Found",
@@ -244,7 +277,7 @@ var SwaggerInfo = &swag.Spec{
 	Host:             "localhost:8080",
 	BasePath:         "/api/",
 	Schemes:          []string{"http"},
-	Title:            "My API",
+	Title:            "Coupon Service API",
 	Description:      "This is an API for managing coupons.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,

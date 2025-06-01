@@ -8,5 +8,6 @@ services:
       - "8080:8080"
     volumes:
       - ./:/go/src/app  # Mount to a different directory for source code
+      - ./.env:/app/.env # Mount the .env file
     working_dir: /app   # Keep the working directory as /app where the binary is
     restart: unless-stopped

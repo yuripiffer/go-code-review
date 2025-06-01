@@ -8,7 +8,7 @@ type Repository struct {
 	entries map[string]entity.Coupon
 }
 
-func New() *Repository {
+func NewRepository() *Repository {
 	return &Repository{
 		entries: make(map[string]entity.Coupon),
 	}
